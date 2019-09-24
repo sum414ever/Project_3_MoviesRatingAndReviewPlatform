@@ -64,17 +64,11 @@ public class MovieController {
                 .body(movieService.getMovieByCategory(category));
     }
 
-    @GetMapping("movie/stats/rating/highest")
-    public ResponseEntity<List<Movie>> getAllMovieByHighestRating(){
+    @GetMapping("movie/stats/rating/{sortedParameter}")
+    public ResponseEntity<List<Movie>> getAllMovieByRating(@PathVariable int sortedParameter){
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(movieService.getAllMovieByHighestRating());
+                .body(movieService.getAllMovieByRating(sortedParameter));
     }
 
-    @GetMapping("movie/stats/rating/lowest")
-    public ResponseEntity<List<Movie>> getAllMovieByLowestRating(){
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(movieService.getAllMovieByLowestRating());
-    }
 }

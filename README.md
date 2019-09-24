@@ -6,7 +6,7 @@ First add some movies to list
 
 {  
     "name": "Citizen Kane",  
-    "category": "drama",  
+    "categoryLabel": "drama",  
     "director": "Orson Welles",  
     "description": "Story is told through the research of a newsreel reporter seeking to solve the mystery of the newspaper magnate's dying word: Rosebud.",  
     "rate": {  
@@ -17,7 +17,7 @@ First add some movies to list
 
 {  
     "name": "The Godfather",  
-    "category": "crime",  
+    "categoryLabel": "crime",  
     "director": "Francis Ford Coppola",  
     "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son",  
     "rate": {  
@@ -28,7 +28,7 @@ First add some movies to list
 
 {  
     "name": "Casablanca",  
-    "category": "adventure",  
+    "categoryLabel": "adventure",  
     "director": "Michael Curtiz",  
     "description": "A cynical American expatriate struggles to decide whether or not he should help his former lover and her fugitive husband escape French Morocco.",  
     "rate": {  
@@ -55,7 +55,7 @@ get info about particular movie including reviews
 [GET] http://localhost:8080/movie/{id}
 
 get movies list by highest rating  
-[GET] http://localhost:8080/movie/stats/rating/highest
+[GET] http://localhost:8080/movie/stats/rating/1
 
 get movies list by lowest rating  
-[GET] http://localhost:8080/movie/stats/rating/lowest
+[GET] http://localhost:8080/movie/stats/rating/0

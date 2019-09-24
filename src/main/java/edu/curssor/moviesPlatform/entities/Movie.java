@@ -12,10 +12,10 @@ public class Movie {
 
     private String name;
 
-    private String category;
+    private String categoryLabel;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Category categoryDB;
+    private Category category;
 
     private String director;
 

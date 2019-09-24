@@ -21,7 +21,5 @@ public interface MovieService {
 
     List<Movie> getMovieByCategory(String category);
 
-    List<Movie> getAllMovieByHighestRating();
-
-    List<Movie> getAllMovieByLowestRating();
+    List<Movie> getAllMovieByRating(int sortedParameter);
 }

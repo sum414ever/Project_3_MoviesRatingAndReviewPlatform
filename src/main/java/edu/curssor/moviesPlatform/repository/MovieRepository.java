@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface MovieRepository extends MongoRepository<Movie, String> {
 
-    List<Movie> findAllByCategoryDB(Category category);
+    List<Movie> findAllByCategory(Category category);
 }

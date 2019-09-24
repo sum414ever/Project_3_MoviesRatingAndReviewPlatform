@@ -31,7 +31,7 @@ public class MovieServiceImpl implements MovieService {
         movie.setName(movieDTO.getName());
         movie.setDirector(movieDTO.getDirector());
         movie.setDescription(movieDTO.getDescription());
-        movie.setCategoryDB(Category.getCategoryFromString(movieDTO.getCategory()));
+        movie.setCategory(Category.getCategoryFromString(movieDTO.getCategoryLabel()));
         movie.setRate(movieDTO.getRate());
 
         movieRepository.save(movie);
@@ -92,20 +92,17 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public List<Movie> getMovieByCategory(String category) {
         Category cat = Category.getCategoryFromString(category);
-        return movieRepository.findAllByCategoryDB(cat);
+        return movieRepository.findAllByCategory(cat);
     }
 
     @Override
-    public List<Movie> getAllMovieByHighestRating() {
-
-        return movieRepository.findAll().stream()
+    public List<Movie> getAllMovieByRating(int sortedParameter) {
+        if(sortedParameter == 1){
+            return movieRepository.findAll().stream()
                 .sorted(Comparator.comparing(movie -> movie.getRate().getAvgRate(),Comparator.reverseOrder()))
                 .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<Movie> getAllMovieByLowestRating() {
-        return movieRepository.findAll().stream()
+        }
+        else return movieRepository.findAll().stream()
                 .sorted(Comparator.comparing(movie -> movie.getRate().getAvgRate()))
                 .collect(Collectors.toList());
     }

@@ -11,10 +11,10 @@ public enum Category {
     WES("western"),
     OTH("other");
 
-    private String category;
+    private String label;
 
     Category(String category) {
-        this.category = category;
+        this.label = category;
     }
 
     public static Category getCategoryFromString(String category) {
@@ -25,7 +25,7 @@ public enum Category {
         return Category.OTH;
     }
 
-    public static String getStringFromCategory(Category category){
+    public static String getLabel(Category category){
 
         for (Category cat  : Category.values()) {
             if (cat.getCategory().equalsIgnoreCase(category.getCategory()))
@@ -35,6 +35,6 @@ public enum Category {
     }
 
     public String getCategory() {
-        return category;
+        return label;
     }
 }
