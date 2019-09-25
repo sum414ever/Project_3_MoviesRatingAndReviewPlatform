@@ -11,6 +11,7 @@ import edu.curssor.moviesPlatform.service.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -22,6 +23,8 @@ public class MovieServiceImpl implements MovieService {
 
     private final MovieRepository movieRepository;
     private final ReviewRepository reviewRepository;
+
+    private final int HIGHEST_RATING = 1;
 
     @Override
     public Movie save(Movie movieDTO) {
@@ -53,6 +56,11 @@ public class MovieServiceImpl implements MovieService {
 
         Movie editedMovie = findMovieById(id);
 
+        return movieRepository.save(checkAndUpdate(movieDTO, editedMovie));
+    }
+
+    private Movie checkAndUpdate(Movie movieDTO, Movie editedMovie){
+
         String newName = Objects.nonNull(movieDTO.getName())
                 ? movieDTO.getName()
                 : editedMovie.getName();
@@ -73,7 +81,7 @@ public class MovieServiceImpl implements MovieService {
                 : editedMovie.getRate();
         editedMovie.setRate(newRate);
 
-        return movieRepository.save(editedMovie);
+        return editedMovie;
     }
 
     @Override
@@ -97,13 +105,16 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public List<Movie> getAllMovieByRating(int sortedParameter) {
-        if(sortedParameter == 1){
-            return movieRepository.findAll().stream()
-                .sorted(Comparator.comparing(movie -> movie.getRate().getAvgRate(),Comparator.reverseOrder()))
-                .collect(Collectors.toList());
-        }
-        else return movieRepository.findAll().stream()
+
+        List<Movie> movies = movieRepository.findAll();
+
+        List<Movie> sortedMovies = movies.stream()
                 .sorted(Comparator.comparing(movie -> movie.getRate().getAvgRate()))
                 .collect(Collectors.toList());
+
+        if ((sortedParameter == HIGHEST_RATING)){
+            Collections.reverse(sortedMovies);
+        }
+        return sortedMovies;
     }
 }

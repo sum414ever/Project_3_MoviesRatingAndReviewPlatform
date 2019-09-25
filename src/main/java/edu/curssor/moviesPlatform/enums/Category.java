@@ -26,10 +26,10 @@ public enum Category {
     }
 
     public static String getLabel(Category category){
-
         for (Category cat  : Category.values()) {
-            if (cat.getCategory().equalsIgnoreCase(category.getCategory()))
+            if (cat.getCategory().equalsIgnoreCase(category.getCategory())){
                 return cat.getCategory();
+            }
         }
         return Category.OTH.getCategory();
     }
